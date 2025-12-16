@@ -11,7 +11,6 @@ namespace Input
         [SerializeField] private float regularInputSpeed;
         [SerializeField] private float midiInputSpeed;
         [SerializeField] private float uiNavigationInterval = 0.3f;
-        [SerializeField] private HapticsController hapticsController;
 
         private PlayerInput _playerInput;
         private Vector2 _movementValue;
@@ -132,7 +131,6 @@ namespace Input
             
             if (-value > 0.0f)
             {
-                hapticsController.SetRumble(0, 0, Math.Abs(_movementValue.y));
                 if (!EventSystem.current?.currentSelectedGameObject)
                 {
                     return;
@@ -146,7 +144,6 @@ namespace Input
             }
             else
             {
-                hapticsController.SetRumble(0, 0, Math.Abs(_movementValue.y));
                 if (!EventSystem.current?.currentSelectedGameObject)
                 {
                     return;
@@ -181,7 +178,6 @@ namespace Input
             
             if (value < 0.0f)
             {
-                hapticsController.SetRumble(1, 1, Math.Abs(_movementValue.x));
                 if (!EventSystem.current?.currentSelectedGameObject)
                 {
                     return;
@@ -195,7 +191,6 @@ namespace Input
             }
             else
             {
-                hapticsController.SetRumble(1, 0, Math.Abs(_movementValue.x));
                 if (!EventSystem.current?.currentSelectedGameObject)
                 {
                     return;
