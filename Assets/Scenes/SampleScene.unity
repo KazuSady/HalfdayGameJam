@@ -331,14 +331,6 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3166330923189935581, guid: de8f7ff52ce6ffe4ba1ce1ef48d9b2ea, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3166330923189935581, guid: de8f7ff52ce6ffe4ba1ce1ef48d9b2ea, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3166330923189935581, guid: de8f7ff52ce6ffe4ba1ce1ef48d9b2ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.64
       objectReference: {fileID: 0}
@@ -686,8 +678,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 540224783}
   - {fileID: 1525044559}
   - {fileID: 253633807}
   - {fileID: 1053190729}
+  - {fileID: 540224783}
   - {fileID: 1378882549}

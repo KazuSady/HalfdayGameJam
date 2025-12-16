@@ -115,6 +115,7 @@ public class MazeGenerator : MonoBehaviour
                     box.size = new Vector2(0.64f, 0.64f);
                     box.isTrigger = false;
                     tileSprite.sprite = wallTile;
+                    tileGO.layer = LayerMask.NameToLayer("Wall");
                 }
                 else if (layout[x][y] == (byte)TileType.EXIT)
                 {
