@@ -132,6 +132,7 @@ namespace Input
             
             if (-value > 0.0f)
             {
+                hapticsController.SetRumble(0, 0, Math.Abs(_movementValue.y));
                 if (!EventSystem.current?.currentSelectedGameObject)
                 {
                     return;
@@ -145,6 +146,7 @@ namespace Input
             }
             else
             {
+                hapticsController.SetRumble(0, 0, Math.Abs(_movementValue.y));
                 if (!EventSystem.current?.currentSelectedGameObject)
                 {
                     return;
@@ -179,7 +181,7 @@ namespace Input
             
             if (value < 0.0f)
             {
-                hapticsController.SetRumble(1, Math.Abs(_movementValue.x));
+                hapticsController.SetRumble(1, 1, Math.Abs(_movementValue.x));
                 if (!EventSystem.current?.currentSelectedGameObject)
                 {
                     return;
@@ -193,7 +195,7 @@ namespace Input
             }
             else
             {
-                hapticsController.SetRumble(0, Math.Abs(_movementValue.x));
+                hapticsController.SetRumble(1, 0, Math.Abs(_movementValue.x));
                 if (!EventSystem.current?.currentSelectedGameObject)
                 {
                     return;

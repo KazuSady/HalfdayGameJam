@@ -12,10 +12,17 @@ public class HapticsController : MonoBehaviour
         _gamepads = Gamepad.all.ToArray();
     }
 
-    public void SetRumble(int gamepad, float value)
+    public void SetRumble(int gamepad, int position, float value)
     {
-        Gamepad.current.SetMotorSpeeds(value * 1000.0f, value * 1000.0f);
-        _gamepads[gamepad].SetMotorSpeeds(value * 1000, value * 1000);
+        if (position == 0)
+        {
+            _gamepads[gamepad].SetMotorSpeeds(value * 1000.0f, 0.0f);
+        }
+        else
+        {
+            _gamepads[gamepad].SetMotorSpeeds(0.0f, value * 1000.0f);
+        }
+        
     }
     
     [ContextMenu("StopRumble")]
