@@ -11,6 +11,7 @@ namespace Input
         [SerializeField] private float regularInputSpeed;
         [SerializeField] private float midiInputSpeed;
         [SerializeField] private float uiNavigationInterval = 0.3f;
+        [SerializeField] private HapticsController hapticsController;
 
         private PlayerInput _playerInput;
         private Vector2 _movementValue;
@@ -24,7 +25,6 @@ namespace Input
 
         public event Action<Vector2> Movement;
         public event Action Interaction;
-        public event Action<Vector2> HeadMovement;
         
         private void Awake()
         {
@@ -67,11 +67,6 @@ namespace Input
             _movementValue = Vector2.zero;
         }
         
-        private void OnHeadRotation(InputAction.CallbackContext obj)
-        {
-            HeadMovement?.Invoke(obj.ReadValue<Vector2>());
-        }
-
         private void OnDeviceChanged(InputDevice arg1, InputDeviceChange arg2)
         {
             if (arg1 is not MidiDevice midiDevice)
@@ -184,6 +179,7 @@ namespace Input
             
             if (value < 0.0f)
             {
+                hapticsController.SetRumble(1, Math.Abs(_movementValue.x));
                 if (!EventSystem.current?.currentSelectedGameObject)
                 {
                     return;
@@ -197,6 +193,7 @@ namespace Input
             }
             else
             {
+                hapticsController.SetRumble(0, Math.Abs(_movementValue.x));
                 if (!EventSystem.current?.currentSelectedGameObject)
                 {
                     return;
