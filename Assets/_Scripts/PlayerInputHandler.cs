@@ -173,7 +173,7 @@ namespace Input
            
             //value = value * 2.0f - 1.0f;
             value = value > 0.5f ? 1.0f : -1.0f;
-            _movementValue = value * midiInputSpeed * Vector2.right;
+            _movementValue = -value * midiInputSpeed * Vector2.right;
             
             if (_uiRightNavigationElapsed < uiNavigationInterval)
             {
