@@ -25,8 +25,8 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] private Sprite wallTile;
     [SerializeField] private Sprite targetTile;
 
-    [Range(8, 24)]
-    [SerializeField] private byte mazeSize;
+    [Range(6, 24)]
+    [SerializeField] private byte mazeSize = 8;
 
     private byte _limit;
     private System.Random _rand = new();
@@ -56,6 +56,8 @@ public class MazeGenerator : MonoBehaviour
         // Create exit
         layout[_limit - 2][_limit - 2] = (byte)TileType.GROUND;
         layout[_limit - 2][_limit - 1] = (byte)TileType.EXIT;
+
+        layout = RandomizeLayoutPosition(layout);
 
         GenerateTiles(layout);
 	}
@@ -133,6 +135,37 @@ public class MazeGenerator : MonoBehaviour
         }
     }
 
+    private byte[][] RandomizeLayoutPosition(in byte[][] layout)
+    {
+        byte[][] newLayout = new byte[_limit][];
+        for(int i = 0; i < _limit; ++i)
+        {
+            newLayout[i] = new byte[_limit];
+        }
+        
+        byte randomOption = (byte)_rand.Next(0, 2);
+        Debug.Log($"Layout randomization ID: {randomOption}");
+        switch (randomOption)
+        {
+            case 0: return layout;
+            case 1:
+            {
+                for(int i = 0; i < _limit; ++i)
+                {
+                    newLayout[i] = new byte[_limit];
+                    for (int k = 0; k < _limit; k++)
+                    {
+                        newLayout[i][k] = layout[k][i];
+                    }
+                }
+                break;
+            }
+            default: return layout;
+        }
+
+        return newLayout;
+    }
+
     private void ShuffleDirections(Direction[] dirs)
     {
         for (int i = dirs.Length - 1; i > 0; i--)
@@ -142,5 +175,5 @@ public class MazeGenerator : MonoBehaviour
         }
     }
 
-    bool IsInside(Vector2Int v) => v.x > 0 && v.x < _limit - 1 && v.y > 0 && v.y < _limit - 1;
+    private bool IsInside(Vector2Int v) => v.x > 0 && v.x < _limit - 1 && v.y > 0 && v.y < _limit - 1;
 }
